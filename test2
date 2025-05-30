@@ -1,0 +1,31 @@
+---
+layout: default
+title: "Kianosh F. Solheim's Website"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  >
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <div class="main-content-wrapper">
+    <h1 data-en="Welcome to My Site" data-no="Velkommen til Mitt Nettsted">Welcome to My Site</h1>
+    <p data-en="Explore my projects, blog posts, and more." data-no="Utforsk mine prosjekter, blogginnlegg, og mer.">
+      Explore my projects, blog posts, and more.
+    </p>
+    <!-- page-specific content here -->
+  </div>
+
+</body>
+</html>
