@@ -16,7 +16,7 @@ title: "Kianosh F. Solheim's Website"
     <style>
         /* General body and HTML styling */
         html, body {
-            height: 100%;
+            /* height: 100%; */ /* Removed to allow body to grow and enable scrolling */
             margin: 0;
             font-family: Georgia, serif; /* Classic serif font */
             background: #ffffff; /* Clean white background */
@@ -26,9 +26,10 @@ title: "Kianosh F. Solheim's Website"
         body {
             display: flex; /* Enables flexbox layout */
             flex-direction: column; /* Stacks child elements vertically */
-            min-height: 100vh; /* Ensures body takes at least the full viewport height */
+            min-height: 100vh; /* Ensures body takes at least the full viewport height and can grow */
             padding: 0; /* No padding on the body itself */
             text-align: center; /* Centers text content for overall page elements */
+            /* overflow-y: auto; */ /* Alternative: could be added here if html/body height:100% was kept, to make body scroll. But removing height:100% from html/body is cleaner. */
         }
 
         /* Main content wrapper styles */
@@ -43,7 +44,7 @@ title: "Kianosh F. Solheim's Website"
             align-items: center; /* Centers content horizontally within the wrapper */
             box-sizing: border-box;
             position: relative; /* For potential positioning of child elements */
-            flex-grow: 1; /* Allows the wrapper to grow */
+            flex-grow: 1; /* Allows the wrapper to grow to fill space if body is taller than content */
         }
 
         /* Social icons styling */
@@ -281,6 +282,20 @@ title: "Kianosh F. Solheim's Website"
             updateFlag(newLang); // Update the flag icon and tooltip
         }
 
+        // Function to update the flag icon and tooltip text
+        function updateFlag(lang) {
+            const label = document.getElementById('langLabel');
+            if (label) { // Update tooltip text
+                label.textContent = lang === 'en' ? 'Change Language to Norwegian' : 'Change Language to English';
+            }
+            // Set the background image of the toggle button to the appropriate flag
+            const flagUrl = lang === 'en'
+                ? 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg' // Norwegian flag
+                : 'https://flagcdn.com/gb.svg'; // UK flag (for English)
+            const button = document.querySelector('button.lang-toggle'); // More specific selector
+            if (button) {
+                button.style.backgroundImage = `url(${flagUrl})`;
+            }
         }
 
         // Event listener for when the DOM is fully loaded
@@ -384,4 +399,5 @@ title: "Kianosh F. Solheim's Website"
     </script>
 </body>
 </html>
+
 
