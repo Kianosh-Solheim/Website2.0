@@ -1,0 +1,1498 @@
+/* ==== Styles from Recommendations.html ==== */
+
+/* General styles for the language toggle */
+    .lang-toggle-wrapper {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 9999;
+    }
+    .lang-toggle {
+      background: transparent;
+      color: transparent;
+      border: none;
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      opacity: 0.5;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+      z-index: 9999;
+    }
+    .lang-toggle:hover {
+      transform: rotate(360deg) scale(1.2);
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      opacity: 1;
+    }
+    .lang-label {
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem; /* Adjusted to sit next to the home label if needed */
+      white-space: nowrap;
+      z-index: 10000;
+      margin-top: 0.3rem;
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      opacity: 0;
+      transform: translateY(-5px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+    .lang-toggle-wrapper:hover .lang-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* New Home button styles (mirroring language switcher) */
+    .home-button-wrapper {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 9999;
+    }
+    .home-button {
+      background: transparent;
+      border: none;
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none; /* Remove underline for the link */
+      opacity: 0.5; /* Faded initial state */
+      transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+      z-index: 9999;
+    }
+    .home-button:hover {
+      transform: rotate(360deg) scale(1.2);
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      opacity: 1;
+    }
+    .home-button i {
+      font-size: 1.2rem; /* Size of the icon */
+      color: #333; /* Color of the icon */
+      transition: color 0.4s ease;
+    }
+    .home-button:hover i {
+      color: #000; /* Darken icon on hover if needed, or keep #333 */
+    }
+
+    .home-label {
+      position: absolute;
+      top: 2.5rem; /* Position below the icon */
+      left: 2.5rem; /* Position next to the icon, adjust as needed */
+      white-space: nowrap;
+      z-index: 10000;
+      margin-top: 0.3rem;
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      opacity: 0; /* Hidden initially */
+      transform: translateY(-5px); /* Slight lift animation */
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none; /* Allows clicks to pass through to the button */
+    }
+    .home-button-wrapper:hover .home-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Fade-in animation for overall page elements */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    /* Styles for general animated buttons */
+    .animated-button {
+      display: inline-block;
+      padding: 0.6rem 1.25rem;
+      background: #2e2e2e;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: normal;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .animated-button:hover {
+      background: #444444;
+      transform: scale(1.05);
+    }
+    /* Styles for social media icons */
+    .social-icons {
+      position: relative;
+    }
+    .social-icons a {
+      position: relative;
+      text-decoration: none;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.5rem;
+      color: #000000;
+      transition: transform 0.2s ease, color 0.3s ease, text-shadow 0.3s ease;
+    }
+    .social-icons a:hover {
+      transform: scale(1.25);
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+    .social-icons a[title="Facebook"]:hover { color: #1877F2; }
+    .social-icons a[title="Instagram"]:hover { color: #E1306C; }
+    .social-icons a[title="LinkedIn"]:hover { color: #0077B5; }
+    .social-icons a[title="Bluesky"]:hover { color: #0A7AFF; }
+    .social-icons a[title="Threads"]:hover { color: #000000; text-shadow: 0 0 6px #000000; }
+    .social-icons a[title="Twitter"]:hover { color: #1DA1F2; }
+    .social-icons a::after {
+      content: attr(title);
+      font-size: 0.75rem;
+      color: #666;
+      margin-top: 0.3rem;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .social-icons a:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Styles for Category Links as Cards - designed for responsiveness */
+    .category-links {
+      display: flex;
+      flex-wrap: wrap; /* Allows items to wrap to the next line */
+      justify-content: center; /* Centers items horizontally */
+      gap: 1.5rem; /* Space between cards */
+      margin-top: 2rem;
+      max-width: 900px; /* Limits overall width on larger screens */
+      width: 100%; /* Ensures it takes full width on smaller screens */
+      padding: 0 1rem; /* Adds padding on the sides for smaller screens */
+      box-sizing: border-box; /* Include padding in width calculation */
+    }
+
+    .category-link {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      flex-grow: 1; /* Allows cards to grow and fill available space */
+      flex-basis: 160px; /* Minimum base width for cards before wrapping */
+      height: 160px;
+      background: #f9f9f9;
+      color: #2e2e2e;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: normal;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-in-out;
+      border: 1px solid #eee;
+      box-sizing: border-box; /* Include padding and border in width calculation */
+    }
+
+    .category-link:hover {
+      background: #e0e0e0;
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .category-link .icon {
+      font-size: 3rem;
+      margin-bottom: 0.75rem;
+      color: #666;
+      transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    /* Specific Hover Animations and Colors for Icons */
+    .category-link.movies-category:hover .icon {
+      transform: rotateY(360deg) scale(1.2);
+      color: #E74C3C;
+    }
+
+    .category-link.apps-category:hover .icon {
+      animation: bounce 0.6s ease-in-out infinite alternate;
+      color: #3498DB;
+    }
+
+    .category-link.books-category:hover .icon {
+      transform: rotateZ(-10deg) scale(1.15);
+      color: #27AE60;
+    }
+
+    .category-link.podcasts-category:hover .icon {
+      animation: pulse 1s infinite, spin 2s linear infinite;
+      color: #9B59B6;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .back-button {
+      margin-top: 2rem;
+    }
+
+    /* Basic media query for very small screens if needed,
+       though current flex/grid setup is largely sufficient */
+    @media (max-width: 480px) {
+      .category-link {
+        flex-basis: 100%; /* Makes cards stack vertically on very small screens */
+        height: auto; /* Allow height to adjust to content */
+        min-height: 120px; /* Ensure a minimum height */
+      }
+      .category-links {
+        gap: 1rem; /* Reduce gap for tighter packing */
+      }
+      h1 {
+        font-size: 2rem !important; /* Adjust header size for small screens */
+      }
+      p {
+        font-size: 1rem !important; /* Adjust paragraph size */
+      }
+      .lang-toggle-wrapper {
+        top: 0.5rem;
+        right: 0.5rem;
+      }
+      .home-button-wrapper {
+        top: 0.5rem;
+        left: 0.5rem;
+      }
+      .home-label, .lang-label {
+        top: 2rem; /* Adjust tooltip position for smaller icons */
+        left: 2rem;
+      }
+    }
+
+/* ==== Styles from movies.html ==== */
+
+/* CSS Variables for easier theme management */
+        :root {
+            --font-family: Georgia, serif;
+            --background-color: #ffffff;
+            --text-color: #000000;
+            --button-bg-dark: #2e2e2e;
+            --button-bg-hover: #444444;
+            --card-bg: #f9f9f9;
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --shadow-hover: rgba(0, 0, 0, 0.12);
+            --border-color: #ccc;
+            --toggle-opacity: 0.5; /* Unified opacity for both toggles */
+            --toggle-hover-opacity: 1; /* Unified hover opacity */
+            --label-bg: rgba(0, 0, 0, 0.75); /* Unified label background */
+            --label-color: white; /* Unified label color */
+            --social-icon-color: #000000;
+            --footer-text-color: #666;
+            --filter-button-bg: #e0e0e0;
+            --filter-button-color: #2e2e2e;
+            --filter-button-hover-bg: #d0d0d0;
+            --filter-button-active-bg: #2e2e2e;
+            --filter-button-active-color: #ffffff;
+        }
+
+        html {
+            box-sizing: border-box; /* Ensure padding and border are included in element's total width and height */
+        }
+        *, *::before, *::after {
+            box-sizing: inherit; /* Inherit box-sizing for all elements */
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--background-color);
+            /* Set max-width and auto margins to center the entire page content */
+            max-width: 1200px; /* Maximum width for the entire page content */
+            margin: 0 auto; /* Center the entire body horizontally */
+            
+            /* Padding for the body, which now acts as the main content container */
+            padding-top: 8rem; /* Increased top padding for desktop/large screens */
+            padding-left: 1rem; /* Consistent left padding for desktop */
+            padding-right: 1rem; /* Consistent right padding for desktop */
+            padding-bottom: 4rem; /* Default bottom padding */
+            
+            width: 100%; /* Ensure body takes full width up to max-width */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 1.2s ease-out;
+            position: relative;
+        }
+
+        /* Home Button Wrapper - Fixed to the top left corner */
+        .home-button-wrapper {
+            position: fixed; /* Position relative to the viewport */
+            top: 0.5rem; /* Consistent top position */
+            left: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10000; /* Ensure it's always on top */
+        }
+        .home-button {
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none; /* Remove underline for the link */
+            opacity: var(--toggle-opacity); /* Faded initial state */
+            transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+            z-index: 9999;
+        }
+        .home-button:hover {
+            transform: rotate(360deg) scale(1.2);
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
+            opacity: var(--toggle-hover-opacity);
+        }
+        .home-button i {
+            font-size: 1.2rem; /* Size of the icon */
+            color: var(--text-color); /* Color of the icon */
+            transition: color 0.4s ease;
+        }
+        .home-button:hover i {
+            color: #000; /* Darken icon on hover if needed, or keep #333 */
+        }
+        .home-label {
+            position: absolute; /* Positioned relative to its parent .home-button-wrapper */
+            top: calc(100% + 0.3rem); /* Position below the icon, 100% of parent height + margin */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for own width */
+            white-space: nowrap;
+            z-index: 10000;
+            background: var(--label-bg);
+            color: var(--label-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            opacity: 0; /* Hidden initially */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none; /* Allows clicks to pass through to the button */
+        }
+        .home-button-wrapper:hover .home-label {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0); /* Combine with existing transform */
+        }
+
+        /* Language Toggle Wrapper - Fixed to the top right corner */
+        .lang-toggle-wrapper {
+            position: fixed; /* Position relative to the viewport */
+            top: 0.5rem; /* Consistent top position */
+            right: 1rem;
+            display: flex;
+            flex-direction: column; /* Keep column for vertical alignment of button and label */
+            align-items: center;
+            z-index: 10000; /* Ensure it's always on top */
+        }
+
+        .lang-toggle {
+            background: transparent;
+            color: transparent;
+            border: none;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            opacity: var(--toggle-opacity);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+            z-index: 9999;
+        }
+
+        .lang-toggle:hover {
+            transform: rotate(360deg) scale(1.2);
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
+            opacity: var(--toggle-hover-opacity);
+        }
+
+        .lang-toggle:focus {
+            outline: 2px solid var(--button-bg-dark);
+            outline-offset: 3px;
+        }
+
+        /* Language Label - Positioned relative to its parent .lang-toggle-wrapper */
+        .lang-label {
+            position: absolute; /* Positioned relative to its parent .lang-toggle-wrapper */
+            top: calc(100% + 0.3rem); /* Position below the icon, 100% of parent height + margin */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for own width */
+            white-space: nowrap;
+            z-index: 10000;
+            background: var(--label-bg);
+            color: var(--label-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none; /* Allows clicks to pass through to the button */
+        }
+
+        .lang-toggle-wrapper:hover .lang-label {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0); /* Combine with existing transform */
+        }
+
+        /* Keyframe for general fade-in */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Keyframe for card fade-in */
+        @keyframes cardFadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
+            margin-top: 0; /* Let body padding handle top spacing */
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem); /* Responsive font size */
+            color: var(--text-color);
+            margin-top: 0;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .animated-button {
+            display: inline-block;
+            padding: 0.6rem 1.25rem;
+            background: var(--button-bg-dark);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: normal;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+        }
+
+        .animated-button:hover {
+            background: var(--button-bg-hover);
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Added subtle shadow on hover */
+        }
+
+        .animated-button:focus {
+            outline: 2px solid var(--button-bg-dark);
+            outline-offset: 3px;
+        }
+
+        .social-icons {
+            position: relative;
+        }
+
+        .social-icons a {
+            position: relative;
+            text-decoration: none;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.5rem;
+            color: var(--social-icon-color);
+            transition: transform 0.2s ease, color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.35) rotate(5deg); /* Slightly more pronounced scale and rotate */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+        }
+
+        .social-icons a:focus {
+            outline: 2px solid var(--social-icon-color);
+            outline-offset: 3px;
+        }
+
+        /* Specific social icon colors on hover */
+        .social-icons a[title="Facebook"]:hover { color: #1877F2; }
+        .social-icons a[title="Instagram"]:hover { color: #E1306C; }
+        .social-icons a[title="LinkedIn"]:hover { color: #0077B5; }
+        .social-icons a[title="Bluesky"]:hover { color: #0A7AFF; }
+        .social-icons a[title="Threads"]:hover { color: #000000; text-shadow: 0 0 6px #000000; }
+        .social-icons a[title="Twitter"]:hover { color: #1DA1F2; }
+
+        .social-icons a::after {
+            content: attr(title);
+            font-size: 0.75rem;
+            color: var(--footer-text-color);
+            margin-top: 0.3rem;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styles for Recommendations Page */
+        .recommendations-grid {
+            display: grid;
+            /* Allow for smaller min-width for better packing on smaller screens */
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Flexible min-width */
+            gap: 1.5rem;
+            margin-top: 3rem;
+            width: 100%; /* Fill 100% of the parent (body's content area) */
+        }
+
+        .recommendation-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            /* Using padding-bottom trick for aspect ratio */
+            position: relative; /* Needed for absolute positioning of image */
+            height: 0; /* Collapse height, let padding-bottom define it */
+            padding-bottom: 150%; /* 2:3 aspect ratio (height is 150% of width) */
+            box-shadow: 0 4px 15px var(--shadow-light);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; /* Keep flex for potential internal content alignment, though image is absolute */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Hide anything outside the card's bounds */
+            /* Staggered animation for cards */
+            opacity: 0; /* Start hidden */
+            transform: translateY(20px); /* Start slightly below */
+            animation: cardFadeIn 0.6s ease-out forwards; /* Apply animation */
+            /* animation-delay will be set by JavaScript */
+        }
+
+        /* Responsive adjustments for card hover */
+        .recommendation-card:hover {
+            transform: translateY(-8px); /* Slightly more lift on hover */
+            box-shadow: 0 8px 25px var(--shadow-hover); /* Stronger shadow on hover */
+        }
+
+        .recommendation-card img {
+            position: absolute; /* Position image absolutely within its relative parent */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Make image fill the aspect-ratio-controlled container */
+            border-radius: 8px;
+            object-fit: cover; /* Crop image to fit the aspect ratio without stretching */
+            display: block; /* Remove any extra space below image */
+        }
+
+        .back-button {
+            margin-top: 2rem;
+        }
+
+        .filter-buttons {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            background: var(--filter-button-bg);
+            color: var(--filter-button-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+            font-weight: normal;
+        }
+
+        .filter-button:hover {
+            background: var(--filter-button-hover-bg);
+        }
+
+        .filter-button:focus {
+            outline: 2px solid var(--button-bg-dark);
+            outline-offset: 3px;
+        }
+
+        .filter-button.active {
+            background: var(--filter-button-active-bg);
+            color: var(--filter-button-active-color);
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+            color: var(--footer-text-color);
+            border-top: 1px solid var(--border-color);
+            background: var(--card-bg);
+        }
+
+        footer img {
+            margin: 0.5rem auto;
+            max-width: 80px;
+            border-radius: 0px; /* Kept as original, change to 50% for circular */
+            display: block;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 6rem; /* Reduced top padding for tablets */
+                padding-left: 0.75rem; /* Slightly reduced side padding for tablets */
+                padding-right: 0.75rem; /* Slightly reduced side padding for tablets */
+            }
+            .home-button-wrapper, .lang-toggle-wrapper {
+                top: 0.5rem; /* Consistent top position */
+            }
+            .home-button-wrapper {
+                left: 0.5rem;
+            }
+            .lang-toggle-wrapper {
+                right: 0.5rem;
+            }
+            h1 {
+                margin-top: 1rem; /* Adjust margin for heading on smaller screens */
+            }
+            .recommendations-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjusted min-width for tablets */
+                gap: 1rem; /* Reduced gap for tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 5rem; /* Further reduced top padding for mobile phones */
+                padding-left: 0.5rem; /* Consistent left padding for mobile */
+                padding-right: 0.5rem; /* Consistent right padding for mobile */
+                padding-bottom: 1rem; /* Reduce bottom padding for mobile */
+            }
+            .recommendations-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Allow for 2 columns on very small phones */
+                gap: 0.75rem; /* Reduce gap for tighter packing on very small screens */
+            }
+            /* Tooltip positioning remains consistent */
+            .home-label, .lang-label {
+                top: calc(100% + 0.3rem);
+            }
+        }
+
+/* ==== Styles from Curriculum Vitae.html ==== */
+
+/* Base HTML and Body styles */
+  html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #f0f2f5 0%, #e0e7ed 100%); /* Subtle gradient background */
+  color: #333;
+  line-height: 1.6;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+  }
+
+  /* Main content wrapper */
+  .cv-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff; /* Already white */
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  box-sizing: border-box;
+  opacity: 0; /* Initial state for fade-in */
+  animation: fadeIn 1s ease-out forwards;
+  }
+
+  /* Headings */
+  h1 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+  animation: slideInFromTop 0.8s ease-out;
+  }
+
+  h2 {
+  color: #34495e;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  opacity: 0; /* Initial state for scroll animation */
+  transform: translateY(20px); /* Initial state for scroll animation */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  h2.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  }
+
+  h3 {
+  color: #555;
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  }
+
+  /* Contact info at the top */
+  .contact-info {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #555;
+  opacity: 0; /* Initial state for fade-in */
+  animation: fadeIn 1.2s ease-out forwards;
+  animation-delay: 0.5s; /* Delay after main CV container */
+  }
+  .contact-info p {
+  margin: 0.3rem 0;
+  }
+  .contact-info a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  }
+  .contact-info a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+  }
+
+  /* Section styling */
+  section {
+  margin-bottom: 2rem;
+  }
+
+  /* List styling for education and experience */
+  ul {
+  list-style: none;
+  padding: 0;
+  }
+
+  ul li {
+  background: #ffffff; /* Changed to white */
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Slightly softer shadow for cleaner look */
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  opacity: 0; /* Initial state for scroll animation */
+  transform: translateX(-50px); /* Initial state for scroll animation */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: var(--stagger-delay, 0s); /* Staggered delay for list items */
+  }
+
+  ul li.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+  }
+
+  .item-content {
+  flex-grow: 1;
+  }
+
+  .item-content p {
+  margin: 0.2rem 0;
+  }
+
+  .item-content .date {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 0.5rem;
+  }
+
+  .item-content .thesis-title {
+  font-style: italic;
+  color: #666;
+  }
+
+  .item-content .courses {
+  font-size: 0.9rem;
+  color: #888;
+  }
+
+  /* Institution/App Logo styling */
+  .institution-logo, .app-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: contain;
+  flex-shrink: 0;
+  /* Removed background-color and padding to ensure transparency */
+  opacity: 0; /* Initial state for scroll animation */
+  transform: scale(0.5); /* Initial state for scroll animation */
+  transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: var(--stagger-delay, 0s); /* Stagger with list item */
+  }
+  .institution-logo.is-visible, .app-logo.is-visible {
+  opacity: 1;
+  transform: scale(1);
+  }
+
+  /* Skills section */
+  .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  }
+
+  .skill-item {
+  background: #ffffff; /* Changed to white */
+  padding: 0.8rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #2980b9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Slightly softer shadow for cleaner look */
+  opacity: 0; /* Initial state for scroll animation */
+  transform: translateY(20px) scale(0.9); /* Initial state for scroll animation */
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition-delay: var(--stagger-delay, 0s);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  }
+  .skill-item.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  }
+
+  .skill-item:hover {
+  transform: translateY(-8px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 0 25px rgba(41, 128, 185, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .skill-item img {
+  width: 35px;
+  height: 35px;
+  margin-bottom: 0.5rem;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for elegance */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  }
+
+  .skill-item img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+
+  /* Style for Font Awesome icons within skill items */
+  .skill-item i {
+  font-size: 35px; /* Match the size of the images */
+  margin-bottom: 0.5rem;
+  color: #2980b9; /* Ensure consistent color with the text */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for elegance */
+  transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease; /* Smooth transition */
+  }
+
+  .skill-item i:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+  color: #3498db; /* Slightly brighter color on hover */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+
+  /* Style for flag icons */
+  .skill-item .flag-icon {
+  width: 35px;
+  height: 23px; /* Adjust height for aspect ratio of flags */
+  margin: 0 2px; /* Small margin between flags */
+  object-fit: cover; /* Changed to cover to ensure flags fill the space */
+  border: 1px solid #ccc; /* Optional: subtle border for flags */
+  border-radius: 6px; /* Increased border-radius for more rounded corners */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Slightly more pronounced shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  }
+  .skill-item .flag-icon:hover {
+  transform: scale(1.15); /* Slightly more zoom on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  }
+
+  .flag-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem; /* Space between flags and text */
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+  }
+
+  @keyframes slideInFromTop {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Language toggle button styles */
+  .lang-toggle-wrapper {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
+  }
+  .lang-toggle {
+    background: transparent;
+    color: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+    z-index: 9999;
+  }
+  .lang-toggle:hover {
+    transform: rotate(360deg) scale(1.2);
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    opacity: 1;
+  }
+  .lang-label {
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem; /* Adjusted to sit next to the home label if needed */
+    white-space: nowrap;
+    z-index: 10000;
+    margin-top: 0.3rem;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .lang-toggle-wrapper:hover .lang-label {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* New Home button styles (mirroring language switcher) */
+  .home-button-wrapper {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
+  }
+  .home-button {
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* Remove underline for the link */
+    opacity: 0.5; /* Faded initial state */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+    z-index: 9999;
+  }
+  .home-button:hover {
+    transform: rotate(360deg) scale(1.2);
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    opacity: 1;
+  }
+  .home-button i {
+    font-size: 1.2rem; /* Size of the icon */
+    color: #333; /* Color of the icon */
+    transition: color 0.4s ease;
+  }
+  .home-button:hover i {
+    color: #000; /* Darken icon on hover if needed, or keep #333 */
+  }
+
+  .home-label {
+    position: absolute;
+    top: 2.5rem; /* Position below the icon */
+    left: 2.5rem; /* Position next to the icon, adjust as needed */
+    white-space: nowrap;
+    z-index: 10000;
+    margin-top: 0.3rem;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    opacity: 0; /* Hidden initially */
+    transform: translateY(-5px); /* Slight lift animation */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none; /* Allows clicks to pass through to the button */
+  }
+  .home-button-wrapper:hover .home-label {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+  /* PDF Download Buttons */
+  .pdf-download-section {
+    text-align: center;
+    margin-top: 1.5rem; /* Reduced margin-top */
+    margin-bottom: 2rem; /* Added margin-bottom to separate from next section */
+    padding: 0.8rem 1rem; /* Reduced padding */
+    border-top: 1px solid #e0e0e0; /* Thinner border */
+    border-bottom: 1px solid #e0e0e0; /* Added bottom border */
+    background-color: #f8f8f8; /* Slightly different background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    opacity: 0; /* Initial state for scroll animation */
+    transform: translateY(20px); /* Initial state for scroll animation */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .pdf-download-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pdf-download-section h3 {
+    color: #34495e;
+    font-size: 1.1rem; /* Smaller font size for heading */
+    margin-bottom: 0.8rem; /* Reduced margin */
+  }
+
+  .pdf-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem; /* Reduced gap between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  }
+
+  .pdf-button {
+    background-color: #333333; /* Dark background color from the home button */
+    color: white; /* White text color from the home button */
+    padding: 0.6rem 1.2rem; /* Consistent padding */
+    border: none;
+    border-radius: 8px; /* Rounded corners from the home button */
+    font-size: 0.9rem; /* Slightly smaller font size for these buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem; /* Space between icon and text */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Consistent shadow */
+  }
+
+  .pdf-button:hover {
+    background-color: #555555; /* Slightly lighter dark grey on hover */
+    transform: translateY(-2px); /* Consistent lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Consistent hover shadow */
+  }
+
+  .pdf-button i {
+    font-size: 1rem; /* Icon size */
+    margin-bottom: 0; /* Override skill-item i margin */
+    text-shadow: none; /* Override skill-item i text-shadow */
+  }
+
+  /* Footer styling (reused from main page) */
+  footer {
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid #ccc;
+  background: #f9f9f9;
+  box-sizing: border-box;
+  }
+  .footer-logo {
+  margin: 0.5rem auto;
+  max-width: 80px;
+  border-radius: 0px;
+  display: block;
+  }
+  .copyright-text {
+  margin-top: 0.5rem;
+  }
+  .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  }
+  .social-icons a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease, color 0.3s ease, text-shadow 0.3s ease;
+  }
+  .social-icons a:hover {
+  transform: scale(1.25);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+  /* Specific hover colors for social media icons */
+  .social-icons a[title="Facebook"]:hover { color: #1877F2; }
+  .social-icons a[title="Instagram"]:hover { color: #E1306C; }
+  .social-icons a[title="LinkedIn"]:hover { color: #0077B5; }
+  .social-icons a[title="Bluesky"]:hover { color: #0A7AFF; }
+  .social-icons a[title="Threads"]:hover { color: #000000; text-shadow: 0 0 6px #000000; }
+  .social-icons a[title="Twitter"]:hover { color: #1DA1F2; }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+  .cv-container {
+  margin: 1rem auto;
+  padding: 1rem;
+  }
+  h1 {
+  font-size: 2.2rem;
+  }
+  h2 {
+  font-size: 1.5rem;
+  }
+  ul li {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  }
+  .institution-logo {
+  margin-bottom: 0.5rem;
+  }
+  .skills-grid {
+  grid-template-columns: 1fr;
+  }
+  .lang-toggle-wrapper {
+  top: 0.5rem;
+  right: 0.5rem;
+  }
+  .home-button-wrapper {
+  top: 0.5rem;
+  left: 0.5rem;
+  }
+  .home-label, .lang-label {
+    top: 2rem; /* Adjust tooltip position for smaller icons */
+    left: 2rem;
+  }
+  }
+
+/* ==== Styles from index.html ==== */
+
+/* General body and HTML styling */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Georgia, serif; /* Classic serif font */
+            background: #ffffff; /* Clean white background */
+            box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+        }
+
+        body {
+            display: flex; /* Enables flexbox layout */
+            flex-direction: column; /* Stacks child elements vertically */
+            min-height: 100vh; /* Ensures body takes at least the full viewport height */
+            padding: 0; /* No padding on the body itself */
+            text-align: center; /* Centers text content for overall page elements */
+        }
+
+        /* Main content wrapper styles */
+        .main-content-wrapper {
+            padding: 4rem 2rem; /* Generous padding for content */
+            width: 100%; /* Takes full available width */
+            max-width: 900px; /* Limits maximum width for better readability on large screens */
+            margin: 0 auto; /* Centers the wrapper horizontally */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Aligns content to the start (top) */
+            align-items: center; /* Centers content horizontally within the wrapper */
+            box-sizing: border-box;
+            position: relative; /* For potential positioning of child elements */
+            flex-grow: 1; /* Allows the wrapper to grow and push the footer down */
+        }
+
+        /* Footer specific styles */
+        footer {
+            width: 100%; /* Full width */
+            text-align: center; /* Center-aligns text */
+            margin-top: auto; /* Pushes footer to the bottom when content is short */
+            padding: 2rem 1rem; /* Padding around footer content */
+            font-size: 0.9rem; /* Slightly smaller font size */
+            color: #666; /* Muted text color */
+            border-top: 1px solid #ccc; /* Subtle top border */
+            background: #f9f9f9; /* Light background for the footer */
+            box-sizing: border-box;
+        }
+
+        /* Social icons styling (for both main content and footer) */
+        .social-icons {
+            position: relative; /* For tooltip positioning */
+            margin-bottom: 1rem; /* Space below icons */
+            display: flex; /* Enables flexbox for icon alignment */
+            justify-content: center; /* Centers icons horizontally */
+            gap: 1rem; /* Space between icons */
+            margin-top: 2.5rem; /* Space above icons */
+            animation: fadeIn 3s ease-out; /* Fade-in animation */
+        }
+
+        .social-icons a {
+            position: relative; /* For tooltip positioning */
+            text-decoration: none; /* Removes underline from links */
+            display: inline-flex; /* Allows flex properties on the anchor */
+            flex-direction: column; /* Stacks icon and tooltip text vertically */
+            align-items: center; /* Centers icon and tooltip text */
+            font-size: 1.5rem; /* Icon size */
+            color: #000000; /* Default icon color (black) */
+            transition: transform 0.2s ease, color 0.3s ease, text-shadow 0.3s ease; /* Smooth transitions for hover effects */
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.25); /* Enlarges icon on hover */
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow on hover */
+        }
+
+        /* Specific hover colors for social media icons */
+        .social-icons a[title="Facebook"]:hover { color: #1877F2; }
+        .social-icons a[title="Instagram"]:hover { color: #E1306C; }
+        .social-icons a[title="LinkedIn"]:hover { color: #0077B5; }
+        .social-icons a[title="Bluesky"]:hover { color: #0A7AFF; }
+        .social-icons a[title="Threads"]:hover { color: #000000; text-shadow: 0 0 6px #000000; }
+        .social-icons a[title="Twitter"]:hover { color: #1DA1F2; } /* Or your preferred color for X */
+
+        /* Tooltip-like effect for social icons on hover */
+        .social-icons a::after {
+            content: attr(title); /* Uses the 'title' attribute for the tooltip text */
+            font-size: 0.75rem; /* Smaller font for tooltip */
+            color: #666; /* Muted color for tooltip text */
+            margin-top: 0.3rem; /* Space between icon and tooltip */
+            opacity: 0; /* Hidden by default */
+            transform: translateY(5px); /* Slightly offset downwards */
+            transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for appearance */
+            pointer-events: none; /* Tooltip doesn't interfere with mouse events */
+        }
+
+        .social-icons a:hover::after {
+            opacity: 1; /* Shows tooltip on hover */
+            transform: translateY(0); /* Moves tooltip to its intended position */
+        }
+
+        /* Styling for the personal logo image in the footer */
+        .footer-logo {
+            margin: 0.5rem auto; /* Centers logo and adds some margin */
+            max-width: 80px; /* Limits logo size */
+            border-radius: 0px; /* No rounded corners for this image */
+            display: block; /* Ensures it's on its own line and margin auto works */
+        }
+
+        /* Copyright text styling */
+        .copyright-text {
+            margin-top: 0.5rem; /* Space above copyright text */
+        }
+
+        /* Language toggle button styles */
+        .lang-toggle {
+            position: fixed; /* Fixed position on the viewport */
+            top: 1rem; /* Distance from the top */
+            right: 1rem; /* Distance from the right */
+            background: transparent; /* Transparent background */
+            color: transparent; /* Transparent text (image is used) */
+            border: none; /* No border */
+            border-radius: 50%; /* Circular button */
+            width: 2rem; /* Button width */
+            height: 2rem; /* Button height */
+            cursor: pointer; /* Pointer cursor on hover */
+            background-repeat: no-repeat; /* Prevents flag image from repeating */
+            background-position: center; /* Centers flag image */
+            background-size: cover; /* Scales flag image to cover button */
+            opacity: 0.5; /* Slightly transparent by default */
+            transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease; /* Smooth transitions for hover effects */
+            z-index: 9999; /* Ensures button is above other content */
+        }
+        .lang-toggle:hover {
+            transform: rotate(360deg) scale(1.2); /* Rotates and scales on hover */
+            box-shadow: 0 0 12px rgba(0,0,0,0.2); /* Adds shadow on hover */
+            opacity: 1; /* Fully opaque on hover */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); } /* Starts transparent and slightly offset */
+            100% { opacity: 1; transform: translateY(0); } /* Fades in to full opacity and original position */
+        }
+
+        /* Animated button styles (for main navigation buttons) */
+        .animated-button {
+            display: inline-block; /* Allows padding and margin */
+            padding: 0.6rem 1.25rem; /* Padding inside buttons */
+            background: #2e2e2e; /* Dark background color */
+            color: #ffffff; /* White text color */
+            text-decoration: none; /* Removes underline from links */
+            border-radius: 8px; /* Rounded corners */
+            font-weight: normal; /* Normal font weight */
+            transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+        }
+        .animated-button:hover {
+            background: #444444; /* Slightly lighter background on hover */
+            transform: scale(1.05); /* Slightly enlarges button on hover */
+        }
+
+        /* Language toggle wrapper and label */
+        .lang-toggle-wrapper {
+            position: fixed; /* Fixed position */
+            top: 1rem; /* Distance from top */
+            right: 1rem; /* Distance from right */
+            display: flex; /* Enables flexbox */
+            flex-direction: column; /* Stacks button and label vertically */
+            align-items: center; /* Centers items horizontally */
+            z-index: 9999; /* Ensures it's on top */
+        }
+        .lang-label {
+            position: absolute; /* Positioned relative to the wrapper */
+            top: 2.5rem; /* Positioned below the flag button */
+            /* Centering the label under the button: */
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap; /* Prevents label text from wrapping */
+            z-index: 10000; /* Ensures label is above the button's hover effect if needed */
+            margin-top: 0.3rem; /* Small space between button and label */
+            background: rgba(0, 0, 0, 0.75); /* Semi-transparent black background */
+            color: white; /* White text */
+            padding: 0.2rem 0.5rem; /* Padding within the label */
+            border-radius: 4px; /* Rounded corners for the label */
+            font-size: 0.7rem; /* Small font size for the label */
+            opacity: 0; /* Hidden by default */
+            /* transform: translateY(-5px); */ /* Initial transform for animation (adjusted for centering) */
+            transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+            pointer-events: none; /* Label doesn't interfere with mouse events */
+        }
+        .lang-toggle-wrapper:hover .lang-label {
+            opacity: 1; /* Shows label on wrapper hover */
+            /* transform: translateY(0); */ /* Final transform for animation (adjusted for centering) */
+        }
+
+        /* Specific styles for elements within the main content area */
+        h1 {
+            font-size: 2.75rem; /* Large font size for main heading */
+            color: #000000; /* Black color */
+            margin-bottom: 0.25rem; /* Small margin below heading */
+            animation: fadeIn 1.5s ease-out; /* Fade-in animation */
+        }
+        /* Default paragraph style within main-content-wrapper, not section p */
+        .main-content-wrapper > p {
+            font-size: 1.25rem; /* Font size for introductory paragraph */
+            color: #000000; /* Black color */
+            margin-top: 0; /* No top margin */
+            animation: fadeIn 2s ease-out; /* Fade-in animation */
+        }
+        .button-group {
+            display: flex; /* Enables flexbox */
+            flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+            justify-content: center; /* Centers buttons */
+            gap: 1rem; /* Space between buttons */
+            row-gap: 0.75rem; /* Space between rows of buttons if they wrap */
+            margin-top: 2rem; /* Space above button group */
+            animation: fadeIn 2.5s ease-out; /* Fade-in animation */
+        }
+        section { /* General styling for content sections */
+            max-width: 700px; /* Limits width of sections for readability */
+            margin-top: 3rem; /* Space above sections */
+            text-align: left; /* Left-aligns text within sections */
+            color: #000000; /* Black text color */
+            animation: fadeIn 3.25s ease-out; /* Fade-in animation with slight delay */
+        }
+        section h2 {
+            color: #000000; /* Black color for section headings */
+            font-size: 1.75rem; /* Font size for section headings */
+            margin-bottom: 1rem; /* Space below section headings */
+        }
+        section p { /* Paragraphs within sections */
+            font-size: 1rem; /* Standard font size for section text */
+            line-height: 1.6; /* Improved line spacing for readability */
+            color: #000000; /* Black color */
+        }
+        #contact h2 { /* Specific adjustment for contact section heading if needed */
+            font-size: 1.5rem; /* Slightly smaller for "Get in Touch" */
+        }
+        #contact form {
+            display: flex; /* Enables flexbox */
+            flex-direction: column; /* Stacks form elements vertically */
+            gap: 1rem; /* Space between form elements */
+        }
+        #contact input,
+        #contact textarea {
+            padding: 0.75rem; /* Padding inside input fields */
+            border-radius: 5px; /* Rounded corners for input fields */
+            border: 1px solid #ccc; /* Light grey border */
+            font-family: Georgia, serif; /* Consistent font */
+            font-size: 1rem; /* Standard font size */
+            width: 100%; /* Full width of the form container */
+            box-sizing: border-box; /* Includes padding and border in width */
+        }
+        #contact button[type="submit"] {
+            background-color: #2e2e2e; /* Dark background for submit button */
+            color: #ffffff; /* White text */
+            border: none; /* No border */
+            font-weight: bold; /* Bold text */
+            cursor: pointer; /* Pointer cursor */
+            padding: 0.75rem; /* Padding */
+            border-radius: 5px; /* Rounded corners */
+            transition: background 0.3s; /* Smooth background transition on hover */
+        }
+        #contact button[type="submit"]:hover {
+            background-color: #444444; /* Lighter background on hover */
+        }
+        .form-response { /* For displaying messages after form submission */
+            margin-top: 1rem; /* Space above the message */
+            font-size: 1rem; /* Standard font size */
+            color: green; /* Green color for success messages (can be changed for errors) */
+            display: none; /* Hidden by default */
+        }
