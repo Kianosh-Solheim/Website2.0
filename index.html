@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kianosh F. Solheim's Website</title>
+  <!-- Font Awesome CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  >
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Home Button Component -->
+  <div data-include="home-button.html"></div>
+
+  <!-- Language Toggle Component -->
+  <div data-include="language-toggle.html"></div>
+
+  <!-- Main Content -->
+  <div class="main-content-wrapper">
+    <h1 data-en="Welcome to My Site" data-no="Velkommen til Mitt Nettsted">Welcome to My Site</h1>
+    <p data-en="Explore my projects, blog posts, and more." data-no="Utforsk mine prosjekter, blogginnlegg, og mer.">
+      Explore my projects, blog posts, and more.
+    </p>
+    <!-- Add your page-specific content here -->
+  </div>
+
+  <!-- Footer Component -->
+  <div data-include="footer.html"></div>
+
+  <!-- Include HTML fragments -->
+  <script>
+    async function includeHTML() {
+      const includes = document.querySelectorAll('[data-include]');
+      for (const el of includes) {
+        const file = el.getAttribute('data-include');
+        try {
+          const resp = await fetch(file);
+          if (resp.ok) {
+            const html = await resp.text();
+            el.insertAdjacentHTML('afterend', html);
+            el.remove();
+          } else {
+            console.error('Failed to load: ' + file);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      includeHTML();
+    });
+  </script>
+
+  <!-- Language Toggle Script -->
+  <script>
+    function toggleLanguage() {
+      const current = localStorage.getItem('lang') || 'en';
+      const next = current === 'en' ? 'no' : 'en';
+      localStorage.setItem('lang', next);
+      applyLanguage(next);
+    }
+    function applyLanguage(lang) {
+      document.querySelectorAll('[data-en], [data-no]').forEach(el => {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = el.getAttribute(`data-${lang}`);
+        } else {
+          el.textContent = el.getAttribute(`data-${lang}`);
+        }
+      });
+      updateFlag(lang);
+    }
+    function updateFlag(lang) {
+      const btn = document.querySelector('.lang-toggle');
+      const url = lang === 'en'
+        ? 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg'
+        : 'https://flagcdn.com/gb.svg';
+      if (btn) btn.style.backgroundImage = `url(${url})`;
+      const label = document.getElementById('langLabel');
+      if (label) label.textContent =
+        lang === 'en' ? 'Change Language to Norwegian' : 'Change Language to English';
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('lang') || 'en';
+      applyLanguage(lang);
+      // Delegate toggle click after include
+      document.body.addEventListener('click', e => {
+        if (e.target.closest('.lang-toggle-wrapper')) {
+          toggleLanguage();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
