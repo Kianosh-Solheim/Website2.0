@@ -183,3 +183,205 @@ title: "Kianosh F. Solheim's Website"
             color: #000000; /* Black color */
             margin-bottom: 0.25rem; /* Small margin below heading */
             animation: fadeIn 1.5s ease-out; /* Fade-in animation */
+        }
+        /* Default paragraph style within main-content-wrapper, not section p */
+        .main-content-wrapper > p {
+            font-size: 1.25rem; /* Font size for introductory paragraph */
+            color: #000000; /* Black color */
+            margin-top: 0; /* No top margin */
+            animation: fadeIn 2s ease-out; /* Fade-in animation */
+        }
+        .button-group {
+            display: flex; /* Enables flexbox */
+            flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+            justify-content: center; /* Centers buttons */
+            gap: 1rem; /* Space between buttons */
+            row-gap: 0.75rem; /* Space between rows of buttons if they wrap */
+            margin-top: 2rem; /* Space above button group */
+            animation: fadeIn 2.5s ease-out; /* Fade-in animation */
+        }
+        section { /* General styling for content sections */
+            max-width: 700px; /* Limits width of sections for readability */
+            margin-top: 3rem; /* Space above sections */
+            text-align: left; /* Left-aligns text within sections */
+            color: #000000; /* Black text color */
+            animation: fadeIn 3.25s ease-out; /* Fade-in animation with slight delay */
+        }
+        section h2 {
+            color: #000000; /* Black color for section headings */
+            font-size: 1.75rem; /* Font size for section headings */
+            margin-bottom: 1rem; /* Space below section headings */
+        }
+        section p { /* Paragraphs within sections */
+            font-size: 1rem; /* Standard font size for section text */
+            line-height: 1.6; /* Improved line spacing for readability */
+            color: #000000; /* Black color */
+        }
+        #contact h2 { /* Specific adjustment for contact section heading if needed */
+            font-size: 1.5rem; /* Slightly smaller for "Get in Touch" */
+        }
+        #contact form {
+            display: flex; /* Enables flexbox */
+            flex-direction: column; /* Stacks form elements vertically */
+            gap: 1rem; /* Space between form elements */
+        }
+        #contact input,
+        #contact textarea {
+            padding: 0.75rem; /* Padding inside input fields */
+            border-radius: 5px; /* Rounded corners for input fields */
+            border: 1px solid #ccc; /* Light grey border */
+            font-family: Georgia, serif; /* Consistent font */
+            font-size: 1rem; /* Standard font size */
+            width: 100%; /* Full width of the form container */
+            box-sizing: border-box; /* Includes padding and border in width */
+        }
+        #contact button[type="submit"] {
+            background-color: #2e2e2e; /* Dark background for submit button */
+            color: #ffffff; /* White text */
+            border: none; /* No border */
+            font-weight: bold; /* Bold text */
+            cursor: pointer; /* Pointer cursor */
+            padding: 0.75rem; /* Padding */
+            border-radius: 5px; /* Rounded corners */
+            transition: background 0.3s; /* Smooth background transition on hover */
+        }
+        #contact button[type="submit"]:hover {
+            background-color: #444444; /* Lighter background on hover */
+        }
+        .form-response { /* For displaying messages after form submission */
+            margin-top: 1rem; /* Space above the message */
+            font-size: 1rem; /* Standard font size */
+            color: green; /* Green color for success messages (can be changed for errors) */
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-toggle-wrapper">
+        <button onclick="toggleLanguage()" title="Change Language" class="lang-toggle"></button>
+        <div class="lang-label" id="langLabel">Change Language</div>
+    </div>
+
+    <script>
+        // Function to toggle language between English ('en') and Norwegian ('no')
+        function toggleLanguage() {
+            const currentLang = localStorage.getItem('lang') || 'en'; // Get current language or default to English
+            const newLang = currentLang === 'en' ? 'no' : 'en'; // Switch to the other language
+            localStorage.setItem('lang', newLang); // Store the new language choice
+
+            // Update all elements with data-en and data-no attributes
+            document.querySelectorAll('[data-en], [data-no]').forEach(el => {
+                // Handle placeholders for input and textarea elements
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute(`data-${newLang}`);
+                } else { // Handle textContent for other elements
+                    el.textContent = el.getAttribute(`data-${newLang}`);
+                }
+            });
+            updateFlag(newLang); // Update the flag icon and tooltip
+        }
+
+        }
+
+        // Event listener for when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = localStorage.getItem('lang') || 'en'; // Get stored language or default to English
+            // Set initial language for all elements
+            document.querySelectorAll('[data-en], [data-no]').forEach(el => {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute(`data-${lang}`);
+                } else {
+                    el.textContent = el.getAttribute(`data-${lang}`);
+                }
+            });
+            updateFlag(lang); // Set initial flag icon and tooltip
+        });
+    </script>
+
+    <div class="main-content-wrapper">
+        <h1 data-en="Kianosh F. Solheim" data-no="Kianosh F. Solheim">Kianosh F. Solheim</h1>
+        <p data-en="Comparative Politics Student" data-no="Statsvitenskapsstudent">Comparative Politics Student</p>
+
+        <div class="button-group">
+            <a href="https://www.solheim.online/Recommendations.html" class="animated-button" data-en="Recommendations" data-no="Anbefalinger">Recommendations</a>
+            <a href="https://www.solheim.online/Curriculum%20Vitae.html" class="animated-button" data-en="Curriculum Vitae" data-no="Curriculum Vitae">Curriculum Vitae</a>
+        </div>
+
+        <div class="social-icons">
+            <a href="https://www.facebook.com/solheim.online/" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/solheim.online" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/kianosh-solheim" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://bsky.app/profile/solheim.online" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+            <a href="https://www.threads.net/@solheim.online" title="Threads"><i class="fa-brands fa-threads"></i></a>
+            <a href="https://x.com/Kianosh_Solheim" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+
+        <section id="about">
+            <h2 data-en="About Me" data-no="Om Meg">About Me</h2>
+            <p data-en="I’m a Comparative Politics student passionate about democracy, participation, and communication. With a background in writing and activism, I work to make political ideas accessible and engaging. My interests include populism, social movements, and the future of democratic institutions. I also enjoy contributing to public debate and visual storytelling through digital media."
+               data-no="Jeg er en statsvitenskapsstudent med lidenskap for demokrati, deltakelse og kommunikasjon. Med bakgrunn fra skriving og aktivisme jobber jeg for å gjøre politiske ideer tilgjengelige og engasjerende. Mine interesser inkluderer populisme, sosiale bevegelser og fremtiden til demokratiske institusjoner. Jeg liker også å bidra til offentlig debatt og visuell historiefortelling gjennom digitale medier.">
+                I’m a Comparative Politics student passionate about democracy, participation, and communication. With a background in writing and activism, I work to make political ideas accessible and engaging. My interests include populism, social movements, and the future of democratic institutions. I also enjoy contributing to public debate and visual storytelling through digital media.
+            </p>
+        </section>
+
+        <section id="contact">
+            <h2 data-en="Get in Touch" data-no="Ta Kontakt">Get in Touch</h2>
+            <form action="https://formspree.io/f/meogbldy" method="POST">
+                <input type="text" name="name" placeholder="Your Name" data-en="Your Name" data-no="Ditt navn" required />
+                <input type="email" name="email" placeholder="Your Email" data-en="Your Email" data-no="Din e-post" required />
+                <textarea name="message" rows="5" placeholder="Your Message" data-en="Your Message" data-no="Din melding" required></textarea>
+                <button type="submit" data-en="Send Message" data-no="Send melding">Send Message</button>
+            </form>
+            <div class="form-response" id="formResponse"></div>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript for handling Formspree submission and displaying a message
+        const contactForm = document.querySelector('#contact form');
+        const formResponseDiv = document.getElementById('formResponse');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+                const formData = new FormData(contactForm);
+                const currentLang = localStorage.getItem('lang') || 'en'; // Get current language for messages
+
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        contactForm.reset(); // Clear the form
+                        formResponseDiv.textContent = currentLang === 'no' ? 'Takk! Meldingen din er sendt.' : 'Thanks! Your message has been sent.';
+                        formResponseDiv.style.color = 'green';
+                        formResponseDiv.style.display = 'block';
+                    } else {
+                        response.json().then(data => {
+                            if (Object.hasOwn(data, 'errors')) {
+                                formResponseDiv.textContent = data["errors"].map(error => error["message"]).join(", ");
+                            } else {
+                                formResponseDiv.textContent = currentLang === 'no' ? 'Oops! Det oppstod et problem med å sende meldingen din.' : 'Oops! There was a problem submitting your form.';
+                            }
+                            formResponseDiv.style.color = 'red';
+                            formResponseDiv.style.display = 'block';
+                        }).catch(() => { // Catch error if response.json() fails or if it's not a JSON error from Formspree
+                             formResponseDiv.textContent = currentLang === 'no' ? 'Oops! Det oppstod et problem med å sende meldingen din. Sjekk nettverkstilkoblingen.' : 'Oops! There was a problem submitting your form. Check your network connection.';
+                             formResponseDiv.style.color = 'red';
+                             formResponseDiv.style.display = 'block';
+                        });
+                    }
+                }).catch(error => {
+                    formResponseDiv.textContent = currentLang === 'no' ? 'Oops! Det oppstod et problem med å sende meldingen din. Sjekk nettverkstilkoblingen.' : 'Oops! There was a problem submitting your form. Check your network connection.';
+                    formResponseDiv.style.color = 'red';
+                    formResponseDiv.style.display = 'block';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
+
